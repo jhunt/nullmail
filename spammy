@@ -1,0 +1,24 @@
+#!/bin/bash
+
+send() {
+	echo >&2 "> $*"
+	echo "$*"
+	sleep 1
+}
+
+send "HELO $(hostname -f)"
+send 'MAIL FROM:<bob@example.com>'
+send 'RCPT TO:<alice@example.com>'
+send 'DATA'
+send 'From: "Bob Example" <bob@example.com>'
+send 'To: Alice Example <alice@example.com>'
+send 'Date: Tue, 15 Jan 2008 16:02:43 -0500'
+send 'X-Spammy: yes'
+send 'Subject: Test message'
+send
+send 'Hello Alice.'
+send 'This is a test message with 5 header fields and 4 lines in the message body.'
+send 'Your friend,'
+send 'Bob'
+send '.'
+send 'QUIT'
